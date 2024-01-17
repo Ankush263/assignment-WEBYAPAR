@@ -1,4 +1,6 @@
 const AWS = require('aws-sdk');
+const dotenv = require('dotenv');
+dotenv.config();
 
 exports.s3 = new AWS.S3({
 	credentials: {
