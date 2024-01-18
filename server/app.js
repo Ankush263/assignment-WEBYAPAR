@@ -7,10 +7,18 @@ const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
+const path = require('path');
 
 const allUserRouter = require('./routes/allUserRoutes');
 
 const app = express();
+
+app.enable('trust proxy');
+
+// app.use((req, res, next) => {
+// 	res.setHeader('Content-Security-Policy', "img-src 'self' data:");
+// 	next();
+// });
 
 app.use(
 	cors({
@@ -19,7 +27,8 @@ app.use(
 	})
 );
 
-app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'html');
 
 app.use(express.json());
 
@@ -32,6 +41,13 @@ app.use(express.json({ limit: '10kb' }));
 
 app.use(mongoSanitize());
 app.use(xss());
+
+app.use(express.static(path.join(__dirname, 'views')));
+
+// app.use((req, res, next) => {
+// 	res.setHeader('Content-Security-Policy', "img-src 'self' data:");
+// 	next();
+// });
 
 app.use('/api/v1/allUser', allUserRouter);
 

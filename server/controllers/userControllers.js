@@ -100,6 +100,23 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
 	});
 });
 
+exports.getTwoUsers = catchAsync(async (req, res, next) => {
+	const docs = await AllUser.find({ role: 'user' });
+	const filteredDocs = docs.filter((user) => user.userId !== null).slice(-2);
+
+	const result = filteredDocs.map((user) => ({
+		_id: user._id,
+		userId: user.userId,
+	}));
+
+	res.status(200).json({
+		status: 'success',
+		data: {
+			data: result,
+		},
+	});
+});
+
 exports.acceptUser = catchAsync(async (req, res, next) => {
 	const doc = await AllUser.findByIdAndUpdate(
 		req.params.id,

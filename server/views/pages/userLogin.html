@@ -10,7 +10,7 @@
 			integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 			crossorigin="anonymous"
 		/>
-		<link rel="stylesheet" href="./styles/index.css" />
+		<link rel="stylesheet" href="../styles/index.css" />
 	</head>
 	<body>
 		<nav class="navbar bg-body-tertiary"></nav>
@@ -23,13 +23,13 @@
 			<div class="right-side">
 				<div class="form">
 					<div class="header">
-						<h3>Admin Login</h3>
+						<h3>User Login</h3>
 					</div>
 					<div class="mb-3">
 						<input
 							type="text"
 							class="form-control"
-							id="admin-form-userId"
+							id="user-form-userId"
 							placeholder="UserId"
 						/>
 					</div>
@@ -37,21 +37,21 @@
 						<input
 							type="password"
 							class="form-control"
-							id="admin-form-password"
+							id="user-form-password"
 							placeholder="Password"
 						/>
 					</div>
-					<button type="submit" class="btn btn-primary" id="login-btn-admin">
+					<button type="submit" class="btn btn-primary" id="login-btn-user">
 						Login
 					</button>
 					<div class="linked-box">
-						<a href="./pages/userLogin.html" class="linked-text"
-							>Wanted to logged in as an User >
+						<a href="../index.html" class="linked-text"
+							>Wanted to logged in as an Admin >
 						</a>
 					</div>
 				</div>
 			</div>
 		</div>
-		<script type="module" src="static/adminLogin.js"></script>
+		<script src="../static/userLogin.js"></script>
 	</body>
 </html>
