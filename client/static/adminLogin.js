@@ -18,7 +18,7 @@ const login = (postData) => {
 				);
 
 			window.location.replace(
-				'https://assignment-webyapar-client.onrender.com/client/pages/createUserPage.html'
+				'https://assignment-webyapar-client.onrender.com/pages/createUserPage.html'
 			);
 		})
 		.catch((error) => console.error('Error:', error));

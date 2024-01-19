@@ -17,7 +17,7 @@ const login = (postData) => {
 					JSON.stringify({ value: `${data.token}`, expires: expire })
 				);
 			window.location.replace(
-				'https://assignment-webyapar-client.onrender.com/client/pages/uploadPhotoPage.html'
+				'https://assignment-webyapar-client.onrender.com/pages/uploadPhotoPage.html'
 			);
 		})
 		.catch((error) => console.error('Error:', error));
