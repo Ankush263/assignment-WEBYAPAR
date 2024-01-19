@@ -15,11 +15,6 @@ const app = express();
 
 app.enable('trust proxy');
 
-// app.use((req, res, next) => {
-// 	res.setHeader('Content-Security-Policy', "img-src 'self' data:");
-// 	next();
-// });
-
 app.use(
 	cors({
 		origin: '*',
@@ -43,11 +38,6 @@ app.use(mongoSanitize());
 app.use(xss());
 
 app.use(express.static(path.join(__dirname, 'views')));
-
-// app.use((req, res, next) => {
-// 	res.setHeader('Content-Security-Policy', "img-src 'self' data:");
-// 	next();
-// });
 
 app.use('/api/v1/allUser', allUserRouter);
 

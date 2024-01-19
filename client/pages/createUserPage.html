@@ -13,6 +13,7 @@
 		<link rel="stylesheet" href="../styles/createUserStyle.css" />
 	</head>
 	<body>
+		<nav class="navbar bg-body-tertiary"></nav>
 		<div class="page">
 			<div class="left-side">
 				<div class="form">
@@ -21,24 +22,20 @@
 					</div>
 					<div class="mb-3">
 						<label for="exampleInputEmail1" class="form-label">UserId: </label>
-						<input
-							type="text"
-							class="form-control"
-							id="formGroupExampleInput"
-						/>
+						<input type="text" class="form-control" id="create-user-userId" />
 					</div>
 					<div class="mb-3">
 						<label for="exampleInputEmail2" class="form-label"
 							>Password:
 						</label>
 						<input
-							type="text"
+							type="password"
 							class="form-control"
-							id="formGroupExampleInput2"
+							id="create-user-password"
 						/>
 					</div>
-					<button type="submit" class="btn btn-primary" id="login-btn">
-						Submit
+					<button type="submit" class="btn btn-primary" id="create-btn">
+						Create
 					</button>
 				</div>
 			</div>
@@ -47,19 +44,15 @@
 					<div class="text">
 						<h2>View User</h2>
 					</div>
-					<div class="users">
-						<div class="userId">1234</div>
-					</div>
-					<div class="users">
-						<div class="userId">1235</div>
-					</div>
+					<div class="user" id="user"></div>
 					<div class="btn-box">
-						<button type="submit" class="btn btn-primary" id="login-btn">
-							view
-						</button>
+						<a class="btn btn-primary" role="button" href="./allUserPage.html"
+							>view</a
+						>
 					</div>
 				</div>
 			</div>
 		</div>
+		<script src="../static/createUser.js"></script>
 	</body>
 </html>

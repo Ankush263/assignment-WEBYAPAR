@@ -16,6 +16,8 @@ const {
 	deleteAvater,
 	uploadImg,
 	getTwoUsers,
+	getMe,
+	updateMe,
 } = require('../controllers/userControllers');
 
 const router = express.Router();
@@ -23,6 +25,8 @@ const router = express.Router();
 router.route('/signup').post(allUserSignup);
 router.route('/create').post(protect, restrictTo('admin'), createUser);
 router.route('/login').post(login);
+router.route('/me').get(protect, getMe);
+router.route('/me').patch(protect, uploadImg, updateMe);
 router.route('/getTwoUsers').get(getTwoUsers);
 router
 	.route('/update-user/:id')

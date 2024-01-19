@@ -100,6 +100,41 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
 	});
 });
 
+exports.getMe = catchAsync(async (req, res, next) => {
+	const doc = await AllUser.findById(req.user.id);
+	res.status(200).json({
+		status: 'success',
+		data: {
+			data: doc,
+		},
+	});
+});
+
+exports.updateMe = catchAsync(async (req, res, next) => {
+	const key = req.file.key;
+	const url = `https://${process.env.BUCKET_NAME}.s3.amazonaws.com/${key}`;
+
+	const doc = await AllUser.findByIdAndUpdate(
+		req.user.id,
+		{ ...req.body, image: url },
+		{
+			new: true,
+			runValidators: true,
+		}
+	);
+
+	if (!doc) {
+		return next(new AppError('No document found with that ID', 404));
+	}
+
+	res.status(200).json({
+		status: 'success',
+		data: {
+			data: doc,
+		},
+	});
+});
+
 exports.getTwoUsers = catchAsync(async (req, res, next) => {
 	const docs = await AllUser.find({ role: 'user' });
 	const filteredDocs = docs.filter((user) => user.userId !== null).slice(-2);

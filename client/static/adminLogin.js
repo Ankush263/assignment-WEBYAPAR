@@ -1,25 +1,28 @@
-// const url = 'http://localhost:3000/api/v1/allUser';
+const url = 'http://localhost:3000/api/v1/allUser';
 
-// const login = (postData) => {
-// 	fetch(`${url}/login`, {
-// 		method: 'POST',
-// 		headers: {
-// 			'Content-Type': 'application/json',
-// 		},
-// 		body: JSON.stringify(postData),
-// 	})
-// 		.then((response) => response.json())
-// 		.then((data) => {
-// 			const expire = new Date().getTime() + 1296000000;
-// 			localStorage.setItem(
-// 				'Token',
-// 				JSON.stringify({ value: `${data.token}`, expires: expire })
-// 			);
-// 		})
-// 		.catch((error) => console.error('Error:', error));
-// };
+const login = (postData) => {
+	fetch(`${url}/login`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(postData),
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			const expire = new Date().getTime() + 1296000000;
+			typeof data.token !== 'undefined' &&
+				localStorage.setItem(
+					'Token',
+					JSON.stringify({ value: `${data.token}`, expires: expire })
+				);
 
-import { login } from '../index';
+			window.location.replace(
+				'http://127.0.0.1:5500/client/pages/createUserPage.html'
+			);
+		})
+		.catch((error) => console.error('Error:', error));
+};
 
 const adminLoginFunctionality = () => {
 	const loginBtnAdmin = document.getElementById('login-btn-admin');
@@ -31,7 +34,6 @@ const adminLoginFunctionality = () => {
 
 	loginBtnAdmin?.addEventListener('click', function (event) {
 		event.preventDefault();
-		console.log('running admin...');
 
 		const postData = {
 			userId: adminFormUserId.value,

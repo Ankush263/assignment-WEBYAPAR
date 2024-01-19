@@ -13,6 +13,23 @@
 	width: 100px;
 }
 
+.btn-flex {
+	min-width: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.accept {
+	margin-right: 10px;
+}
+
+.img {
+	border: 1px solid;
+	width: 50px;
+	height: 50px;
+}
+
 .table {
 	margin-top: 30px;
 	width: 95%;
@@ -23,7 +40,6 @@
 @media (max-width: 595px) {
 	.table {
 		display: none;
-		background-color: #edebeb;
 	}
 	.table2 {
 		display: flex;
