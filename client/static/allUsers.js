@@ -1,4 +1,4 @@
-const url = 'http://localhost:3000/api/v1/allUser';
+const url = 'https://assignment-webyapar.onrender.com/api/v1/allUser';
 
 const fetchUsers = () => {
 	const token = JSON.parse(localStorage.getItem('Token'))?.value;
