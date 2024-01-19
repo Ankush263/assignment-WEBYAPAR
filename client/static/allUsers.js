@@ -53,6 +53,7 @@ const resetUser = (userId) => {
 
 const setUsers = (user) => {
 	const table = document.getElementById('table');
+	const smTable = document.getElementById('small-table');
 
 	const tableELements = user.map((i) => {
 		return `
@@ -84,6 +85,49 @@ const setUsers = (user) => {
       `;
 	});
 
+	const smallTableElements = user.map((i) => {
+		return `
+		<div class="table2">
+			<div class="upper">
+				<div class="upper-left">UserId: ${i.userId}</div>
+				<div class="upper-right">Name: ${i.username === null ? '-' : i.username}</div>
+			</div>
+			<div class="lower">
+				<div class="lower-left">
+					<span>photo: </span>
+					<img src=${
+						i.image === null ? '../public/image.png' : i.image
+					} alt="image" width=50 height=50 />
+				</div>
+				<div class="lower-right">
+					<span>Action: </span>
+					<div class="btn-box2">
+						${
+							i.accepted
+								? `
+							<div class="btn-flex">
+								<button 
+									type="button" 
+									class="btn btn-outline-primary btn-sm small" 
+									id="delete" data-user-id="${i._id}">
+									Delete
+									</button>
+							</div>
+							`
+								: `
+							<div class="btn-flex">
+								<button type="button" class="btn btn-primary accept btn-sm small" id="accept" data-user-id="${i._id}">Accept</button>
+								<button type="button" class="btn btn-outline-primary btn-sm small" id="delete" data-user-id="${i._id}">Delete</button>
+							</div>
+							`
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+		`;
+	});
+
 	table.innerHTML = `
     <table class="table table-striped table-bordered border-primary">
       <thead>
@@ -99,12 +143,22 @@ const setUsers = (user) => {
       </tbody>
     </table>
       `;
+
+	smTable.innerHTML = `${smallTableElements.join('')}`;
 };
 
 const accept = () => {
 	const table = document.getElementById('table');
+	const smTable = document.getElementById('small-table');
 
 	table.addEventListener('click', (event) => {
+		if (event.target.id === 'accept') {
+			const userId = event.target.getAttribute('data-user-id');
+			fetchAccept(userId);
+		}
+	});
+
+	smTable.addEventListener('click', (event) => {
 		if (event.target.id === 'accept') {
 			const userId = event.target.getAttribute('data-user-id');
 			fetchAccept(userId);
@@ -114,12 +168,19 @@ const accept = () => {
 
 const reset = () => {
 	const table = document.getElementById('table');
+	const smTable = document.getElementById('small-table');
 
 	table.addEventListener('click', (event) => {
 		if (event.target.id === 'delete') {
 			const userId = event.target.getAttribute('data-user-id');
 			resetUser(userId);
-			console.log(userId);
+		}
+	});
+
+	smTable.addEventListener('click', (event) => {
+		if (event.target.id === 'delete') {
+			const userId = event.target.getAttribute('data-user-id');
+			resetUser(userId);
 		}
 	});
 };
