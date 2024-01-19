@@ -1,3 +1,7 @@
+body {
+	background: #edebeb;
+}
+
 .loginPage {
 	min-height: 100vh;
 	display: flex;

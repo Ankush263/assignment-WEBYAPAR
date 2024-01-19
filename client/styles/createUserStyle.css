@@ -1,3 +1,7 @@
+body {
+	background: #edebeb;
+}
+
 .page {
 	display: flex;
 	height: 100vh;
